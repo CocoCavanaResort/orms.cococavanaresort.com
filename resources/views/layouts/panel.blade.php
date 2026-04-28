@@ -1,13 +1,20 @@
 <?php
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
-new class extends Component
+new #[Layout('layouts.app')] class extends Component
 {
     //
 };
 ?>
 
-<div>
-    {{-- Be present above all else. - Naval Ravikant --}}
-</div>
+@extends('layouts.app')
+
+@section('content')
+    @livewire('panel.topnav')
+    @livewire('panel.sidenav')
+    <main>
+        {{ $slot }}
+    </main>
+@endsection

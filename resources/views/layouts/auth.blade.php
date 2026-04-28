@@ -1,13 +1,18 @@
 <?php
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
-new class extends Component
+new #[Layout('layouts.app')] class extends Component
 {
     //
 };
 ?>
 
-<div>
-    {{-- Breathing in, I calm body and mind. Breathing out, I smile. - Thich Nhat Hanh --}}
+@extends('layouts.app')
+
+@section('content')
+<div class="wrapper">
+    {{ $slot }}
 </div>
+@endsection
