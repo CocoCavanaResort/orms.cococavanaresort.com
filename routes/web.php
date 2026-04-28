@@ -10,4 +10,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('guest')->group(function () {
     Route::livewire('/auth/login','pages::auth.login')->name('login');
+
 });
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
