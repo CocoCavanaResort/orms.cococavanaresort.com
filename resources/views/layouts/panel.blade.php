@@ -11,8 +11,12 @@ new #[Layout('layouts.app')] class extends Component
 
 @extends('layouts.app')
 
+@push('styles')
+    <link rel="stylesheet" href="/src/css/panel.min.css">
+@endpush
+
 @section('content')
-    @livewire('panel.topnav')
+    @livewire('panel.topnav', ['title' => $title])
     @livewire('panel.sidenav')
     <main>
         {{ $slot }}

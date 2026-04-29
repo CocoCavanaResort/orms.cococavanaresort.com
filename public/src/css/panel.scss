@@ -1,0 +1,106 @@
+body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "sidenav topnav"
+        "sidenav main";
+
+    & > header {
+        grid-area: topnav;
+
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+
+        min-height: 48px;
+
+        z-index: 10;
+    }
+
+    & > aside {
+        grid-area: sidenav;
+
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+        
+        width: 320px;
+        height: 100vh;
+
+        z-index: 11;
+
+        @media screen and (max-width: 768px) {
+            width: 100vw;
+
+            position: absolute;
+            left: -100vw;
+
+            transition: left 0.3s ease-in-out;
+
+            &.active {
+                left: 0;
+            }
+        }
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #212529;
+            text-decoration: none;
+
+            & > i {
+                margin-right: 0.5rem;
+            }
+
+            &:hover {
+                background-color: #e9ecef;
+            }
+
+            &.active {
+                background-color: #e9ecef;
+                font-weight: bold;
+            }
+
+            &[data-bs-toggle="collapse"] {
+                position: relative;
+
+                &::after {
+                    content: "\f078";
+                    font-family: "FontAwesome";
+                    position: absolute;
+                    right: 1rem;
+                    transition: transform 0.3s ease-in-out;
+                }
+
+                &.collapsed::after {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+
+    & > main {
+        grid-area: main;
+
+        display: flex;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        padding: 1rem;
+
+        z-index: 9;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5rem;
+        }
+    }
+}
+
+.sidenav-toggle {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+    }
+}
