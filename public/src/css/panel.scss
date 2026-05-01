@@ -43,6 +43,13 @@ body {
                 left: 0;
             }
         }
+
+        nav {
+            // hide scrollbar but still allow scrolling
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
         .nav-link {
             display: block;
             padding: 0.75rem 1rem;

@@ -3,7 +3,7 @@
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
-new #[Layout('layouts.panel', ['title' => 'Dashboard'])] class extends Component
+new #[Layout('layouts::panel', ['title' => 'Dashboard'])] class extends Component
 {
     //
 };

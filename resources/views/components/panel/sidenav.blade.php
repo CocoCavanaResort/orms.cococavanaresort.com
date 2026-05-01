@@ -230,7 +230,7 @@ new class extends Component
                 System Settings
             </a>
             <div class="collapse ps-3" id="systemSettingsMenu">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('users') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-user-cog"></i>
                     User Management
                 </a>

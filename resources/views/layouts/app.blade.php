@@ -21,8 +21,6 @@
     </head>
     <body>
         @yield('content')
-
         @livewireScripts
-        
     </body>
 </html>
