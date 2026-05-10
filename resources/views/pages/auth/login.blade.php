@@ -30,7 +30,9 @@ new #[Layout('layouts.auth', ['title' => 'Login'])] class extends Component
 <div class="card">
     <div class="card-body">
         <h5 class="card-title text-center">{{ config('app.name') }}</h5>
-        <img src="/src/images/login.png" alt="Logo" width="300">
+        <div class="d-flex justify-content-center mb-4">
+            <img src="/src/images/login.png" alt="Logo" width="300">
+        </div>
         @error('email')
             <div class="alert alert-danger small" role="alert">
                 {{ $message }}

@@ -40,7 +40,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function branch() {
+    public function branch()
+    {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->id === 1;
     }
 }

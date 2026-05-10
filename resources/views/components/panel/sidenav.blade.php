@@ -1,10 +1,16 @@
 <?php
 
 use Livewire\Component;
+use App\Models\Property\Branch;
 
 new class extends Component
 {
-    //
+    public function with(): array
+    {
+        return [
+            'branches' => Branch::all(),
+        ];
+    }
 };
 ?>
 
@@ -23,16 +29,16 @@ new class extends Component
             </a>
     
             @can('manage-booking')    
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#bookingMenu" role="button" aria-expanded="false" aria-controls="bookingMenu">
+            <a class="nav-link @if(!request()->routeIs('rooms')) collapsed @endif" data-bs-toggle="collapse" href="#bookingMenu" role="button" aria-expanded="false" aria-controls="bookingMenu">
                 <i class="fa-solid fa-book"></i>
                 Booking
             </a>
-            <div class="collapse ps-3" id="bookingMenu">
+            <div class="collapse @if(request()->routeIs('rooms')) show @endif ps-3" id="bookingMenu">
                 <a class="nav-link" href="#">
                     <i class="fa-solid fa-calendar-check"></i>
                     Reservations
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('rooms') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-bed"></i>
                     Rooms
                 </a>
@@ -204,7 +210,7 @@ new class extends Component
             </div>
             @endcan
     
-            @can('manage-property')
+            @can(['manage-rooms', 'manage-branches'])
             <!-- Property Management -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#propertyManagementMenu" role="button" aria-expanded="false" aria-controls="propertyManagementMenu">
                 <i class="fa-solid fa-building"></i>

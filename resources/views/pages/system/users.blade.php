@@ -31,6 +31,7 @@ new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
     {
         $user = User::findOrFail($userId);
         $user->delete();
+        session()->flash('success', 'User deleted successfully.');
     }
 };
 ?>
@@ -48,7 +49,6 @@ new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
                         <div>
                             <h5 class="card-title m-0">{{ $user->name }} <small>({{ $user->roles->pluck('name')->join(', ') }})</small></h5>
                             <p class="card-text small">{{ $user->email }}</p>
-
                         </div>
                         <div>
                             <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-primary" wire:navigate>Edit</a>

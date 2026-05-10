@@ -3,11 +3,25 @@
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Models\Property\Room;
+use App\Models\Property\Branch;
 
 new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
 {
     public $search = '';
-    public $branch_id = '';
+    public $branch_id;
+
+    public function mount()
+    {
+        $this->branch_id = auth()->user()->isSuperAdmin() ? null : auth()->user()->branch_id;
+    }
+
+    public function deleteRoom($id)
+    {
+        $room = Room::findOrFail($id);
+        $room->delete();
+
+        session()->flash('success', 'Room deleted successfully.');
+    }
 
     public function with(): array
     {
@@ -17,6 +31,7 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
                     $query->where('branch_id', $this->branch_id);
                 })
                 ->get(),
+            'branches' => Branch::all(),
         ];
     }
 };
@@ -27,12 +42,14 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
         <a href="{{ route('rooms.add') }}" class="btn btn-primary" wire:navigate>Add Room</a>
         <div class="d-flex align-items-center gap-2">
             <input type="text" class="form-control" placeholder="Search rooms..." wire:model.live="search">
-            <select class="form-select mt-2" wire:model.live="branch_id">
+            @if (auth()->user()->isSuperAdmin())
+            <select class="form-select" wire:model.live="branch_id">
                 <option value="">All Branches</option>
-                @foreach (\App\Models\Property\Branch::all() as $branch)
+                @foreach ($branches as $branch)
                     <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                 @endforeach
             </select>
+            @endif
         </div>
     </div>
     <div class="d-flex flex-column gap-3">
@@ -52,16 +69,5 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
                 </div>
             </div>
         @endforeach
-    </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        @if (session('success'))
-        <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
-            <div class="d-flex">    
-                <div class="toast-body">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-        @endif
     </div>
 </div>

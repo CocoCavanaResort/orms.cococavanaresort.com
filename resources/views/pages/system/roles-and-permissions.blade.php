@@ -36,8 +36,8 @@ new #[Layout('layouts::panel', ['title' => 'Roles and Permissions'])] class exte
                             <h5 class="card-title m-0">{{ $role->name }}</h5>
                             {{-- First 3 permissions then ... --}}
                             <p class="card-text small">
-                                {{ $role->permissions->pluck('name')->take(3)->join(', ') }}
-                                @if ($role->permissions->count() > 3)
+                                {{ $role->permissions->pluck('name')->take(2)->join(', ') }}
+                                @if ($role->permissions->count() > 2)
                                     ... ({{ $role->permissions->count() }} total)
                                 @elseif($role->permissions->count() === 0)
                                     No permissions assigned

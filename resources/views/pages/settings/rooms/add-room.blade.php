@@ -3,6 +3,7 @@
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Models\Property\Room;
+use App\Models\Property\Branch;
 
 new #[Layout('layouts::panel', ['title' => 'Add Room'])] class extends Component
 {
@@ -12,10 +13,16 @@ new #[Layout('layouts::panel', ['title' => 'Add Room'])] class extends Component
     public $price;
     public $status;
 
+    public function mount()
+    {
+        $this->branch_id = auth()->user()->isSuperAdmin() ? null : auth()->user()->branch_id;
+        $this->status = 'active';
+    }
+
     public function with(): array
     {
         return [
-            'branches' => \App\Models\Property\Branch::all(),
+            'branches' => Branch::all(),
         ];
     }
 
@@ -53,7 +60,7 @@ new #[Layout('layouts::panel', ['title' => 'Add Room'])] class extends Component
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model.defer="name">
                     @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
-                @if (Auth::id() == 1)
+                @if (auth()->user()->isSuperAdmin())
                 <div class="mb-3">
                     <label for="branch_id" class="form-label">Branch</label>
                     <select class="form-select @error('branch_id') is-invalid @enderror" id="branch_id" wire:model.defer="branch_id">
@@ -64,8 +71,6 @@ new #[Layout('layouts::panel', ['title' => 'Add Room'])] class extends Component
                     </select>
                     @error('branch_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
-                @else
-                <input type="hidden" wire:model.defer="branch_id" value="{{ Auth::user()->branch_id }}">
                 @endif
                 <div class="mb-3">
                     <label for="capacity" class="form-label">Capacity</label>

@@ -10,7 +10,7 @@
 
         @livewireStyles
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/pulse/bootstrap.min.css" integrity="sha256-o//3hBDveRLQUla4SY0ZWD9uGrNz8nJZc8cuqV7K81g=" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/lux/bootstrap.min.css" integrity="sha256-oZzP1pGzT2P/dVEmU32VzutI+S52WHV91f1xdB2g6Cs=" crossorigin="anonymous">
         <link rel="stylesheet" href="/src/css/app.min.css">
         @stack('styles')
 
