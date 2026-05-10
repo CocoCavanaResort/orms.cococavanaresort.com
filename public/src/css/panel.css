@@ -6,6 +6,7 @@ body {
 }
 body > header {
   grid-area: topnav;
+  max-width: 100vw;
   background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
   min-height: 48px;
