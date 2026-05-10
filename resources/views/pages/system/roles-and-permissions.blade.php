@@ -27,27 +27,25 @@ new #[Layout('layouts::panel', ['title' => 'Roles and Permissions'])] class exte
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a href="{{ route('roles.add') }}" class="btn btn-primary" wire:navigate>Add Role</a>
     </div>
-    <div class="d-flex flex-column gap-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         @foreach ($roles as $role)
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="card-title m-0">{{ $role->name }}</h5>
-                            {{-- First 3 permissions then ... --}}
-                            <p class="card-text small">
-                                {{ $role->permissions->pluck('name')->take(2)->join(', ') }}
-                                @if ($role->permissions->count() > 2)
-                                    ... ({{ $role->permissions->count() }} total)
-                                @elseif($role->permissions->count() === 0)
-                                    No permissions assigned
-                                @endif
-                            </p>
-                        </div>
-                        <div>
-                            <a href="{{ route('roles.edit', ['id' => $role->id]) }}" class="btn btn-primary" wire:navigate>Edit</a>
-                            <button class="btn btn-danger" wire:click="deleteRole({{ $role->id }})" wire:confirm="Are you sure you want to delete this role?">Delete</button>
-                        </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title m-0">{{ $role->name }}</h5>
+                        {{-- First 3 permissions then ... --}}
+                        <p class="card-text small">
+                            {{ $role->permissions->pluck('name')->take(2)->join(', ') }}
+                            @if ($role->permissions->count() > 2)
+                                ... ({{ $role->permissions->count() }} total)
+                            @elseif($role->permissions->count() === 0)
+                                No permissions assigned
+                            @endif
+                        </p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end gap-2">
+                        <a href="{{ route('roles.edit', ['id' => $role->id]) }}" class="btn btn-sm btn-primary" wire:navigate>Edit</a>
+                        <button class="btn btn-sm btn-danger" wire:click="deleteRole({{ $role->id }})" wire:confirm="Are you sure you want to delete this role?">Delete</button>
                     </div>
                 </div>
             </div>
