@@ -18,7 +18,7 @@ new class extends Component
         <button class="btn btn-ghost sidenav-toggle">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <h5 class="navbar-brand mb-0">{{ $title }}</h5>
+        <h6 class="navbar-brand mb-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $title }}</h6>
         <div class="navbar-nav">
             <div class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
