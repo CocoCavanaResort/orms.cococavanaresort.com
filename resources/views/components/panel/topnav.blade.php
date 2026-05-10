@@ -13,7 +13,7 @@ new class extends Component
 };
 ?>
 
-<header class="topnav navbar navbar-expand-lg navbar-light d-flex align-items-center">
+<header class="topnav navbar navbar-expand navbar-light d-flex align-items-center">
     <div class="container-fluid">
         <button class="btn btn-ghost sidenav-toggle">
             <i class="fa-solid fa-bars"></i>

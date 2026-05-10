@@ -22,8 +22,7 @@ new class extends Component
                 Dashboard
             </a>
     
-            @role(['booking', 'admin', 'superadmin'])
-            <!-- Booking -->
+            @can('manage-booking')    
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#bookingMenu" role="button" aria-expanded="false" aria-controls="bookingMenu">
                 <i class="fa-solid fa-book"></i>
                 Booking
@@ -46,9 +45,9 @@ new class extends Component
                     Invoices
                 </a>
             </div>
-            @endrole
+            @endcan
     
-            @role(['frontdesk', 'admin', 'superadmin'])
+            @can('access-front-desk')
             <!-- Front Desk -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#frontDeskMenu" role="button" aria-expanded="false" aria-controls="frontDeskMenu">
                 <i class="fa-solid fa-concierge-bell"></i>
@@ -68,9 +67,9 @@ new class extends Component
                     Billing
                 </a>
             </div>
-            @endrole
+            @endcan
     
-            @role(['housekeeping', 'admin', 'superadmin'])
+            @can('access-housekeeping')
             <!-- Housekeeping -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#housekeepingMenu" role="button" aria-expanded="false" aria-controls="housekeepingMenu">
                 <i class="fa-solid fa-broom"></i>
@@ -90,9 +89,9 @@ new class extends Component
                     Staff
                 </a>
             </div>
-            @endrole
+            @endcan
     
-            @role(['hr', 'admin', 'superadmin'])
+            @can('access-hr')
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#hrMenu" role="button" aria-expanded="false" aria-controls="hrMenu">
                 <i class="fa-solid fa-users"></i>
                 Human Resources
@@ -181,9 +180,9 @@ new class extends Component
                     </a>
                 </div>
             </div>
-            @endrole
+            @endcan
     
-            @role(['reporting', 'admin', 'superadmin'])
+            @can('access-reporting')
             <!-- Reporting -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#reportingMenu" role="button" aria-expanded="false" aria-controls="reportingMenu">
                 <i class="fa-solid fa-chart-line"></i>
@@ -203,9 +202,9 @@ new class extends Component
                     Customer Report
                 </a>
             </div>
-            @endrole
+            @endcan
     
-            @role(['admin', 'superadmin'])
+            @can('access-property-management')
             <!-- Property Management -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#propertyManagementMenu" role="button" aria-expanded="false" aria-controls="propertyManagementMenu">
                 <i class="fa-solid fa-building"></i>
@@ -221,9 +220,9 @@ new class extends Component
                     Branches
                 </a>
             </div>
-            @endrole
+            @endcan
     
-            @role('superadmin')
+            @can('access-system-settings')
             <!-- System Settings -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#systemSettingsMenu" role="button" aria-expanded="false" aria-controls="systemSettingsMenu">
                 <i class="fa-solid fa-gear"></i>
@@ -234,12 +233,12 @@ new class extends Component
                     <i class="fa-solid fa-user-cog"></i>
                     User Management
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('roles-and-permissions') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-shield-halved"></i>
                     Roles & Permissions
                 </a>
             </div>
-            @endrole
+            @endcan
         </div>
     </nav>
     @script

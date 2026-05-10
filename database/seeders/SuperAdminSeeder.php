@@ -14,14 +14,25 @@ class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $superAdminRole = Role::create(['name' => 'superadmin']);
+        $superAdminRole = Role::firstOrCreate(['name' => 'Super Admin']);
         $superAdminRole->syncPermissions(Permission::all());
 
-        $superAdmin = User::create([
-            'name' => 'superadmin',
+        $superAdmin = User::firstOrCreate([
+            'name' => 'Super Admin',
             'email' => 'admin@cococavanaresort.com',
+        ], [
             'password' => bcrypt('admin')
         ]);
         $superAdmin->syncRoles($superAdminRole);
+
+        $defaultRole = Role::firstOrCreate(['name'=> 'User']);
+        
+        $defaultUser = User::firstOrCreate([
+            'name' => 'User',
+            'email' => 'user@cococavanaresort.com',
+        ], [
+            'password' => bcrypt('user')
+        ]);
+        $defaultUser->syncRoles($defaultRole);
     }
 }

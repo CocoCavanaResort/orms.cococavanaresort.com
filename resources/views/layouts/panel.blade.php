@@ -18,7 +18,7 @@ new #[Layout('layouts.app')] class extends Component
 @section('content')
     @livewire('panel.topnav', ['title' => $title])
     @livewire('panel.sidenav')
-    <main>
+    <main id="app-content">
         {{ $slot }}
     </main>
 @endsection

@@ -36,12 +36,12 @@ new #[Layout('layouts::panel', ['title' => 'Edit User'])] class extends Componen
         $user->save();
 
         // Redirect to users list or show success message
-        return redirect()->route('users');
+        return $this->redirect(route('users'), true);
     }
 };
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <form wire:submit.prevent="update({{ $user->id }})">
         <div class="mb-3">
             <label for="username @error('username') text-danger @enderror" class="form-label">Username</label>
