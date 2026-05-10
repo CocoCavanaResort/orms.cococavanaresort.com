@@ -204,31 +204,31 @@ new class extends Component
             </div>
             @endcan
     
-            @can('access-property-management')
+            @can('manage-property')
             <!-- Property Management -->
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#propertyManagementMenu" role="button" aria-expanded="false" aria-controls="propertyManagementMenu">
                 <i class="fa-solid fa-building"></i>
                 Property Management
             </a>
             <div class="collapse ps-3" id="propertyManagementMenu">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-cogs"></i>
-                    General Settings
-                </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('branches') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-code-branch"></i>
                     Branches
+                </a>
+                <a class="nav-link" href="{{ route('rooms') }}" wire:navigate wire:current="active">
+                    <i class="fa-solid fa-bed"></i>
+                    Rooms
                 </a>
             </div>
             @endcan
     
             @can('access-system-settings')
             <!-- System Settings -->
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#systemSettingsMenu" role="button" aria-expanded="false" aria-controls="systemSettingsMenu">
+            <a class="nav-link {{ request()->routeIs('users') || request()->routeIs('roles-and-permissions') ? '' : 'collapsed' }}" data-bs-toggle="collapse" href="#systemSettingsMenu" role="button" aria-expanded="false" aria-controls="systemSettingsMenu">
                 <i class="fa-solid fa-gear"></i>
                 System Settings
             </a>
-            <div class="collapse ps-3" id="systemSettingsMenu">
+            <div class="collapse ps-3 {{ request()->routeIs('users') || request()->routeIs('roles-and-permissions') ? 'show' : '' }}" id="systemSettingsMenu">
                 <a class="nav-link" href="{{ route('users') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-user-cog"></i>
                     User Management

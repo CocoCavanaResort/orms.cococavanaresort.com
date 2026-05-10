@@ -16,6 +16,7 @@ class PermissionsSeeder extends Seeder
         $permissions = [
             ["name"=> "manage-booking", "guard_name" => "web"],
             ["name"=> "access-system-settings", "guard_name" => "web"],
+            ["name"=> "manage-property", "guard_name" => "web"],
             ["name"=> "manage-users", "guard_name" => "web"],
             ["name"=> "manage-roles", "guard_name" => "web"],
             ["name"=> "manage-permissions", "guard_name" => "web"],
