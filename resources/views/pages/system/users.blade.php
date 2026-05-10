@@ -3,6 +3,7 @@
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Models\User;
+use Livewire\Attributes\On;
 
 new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
 {
@@ -27,9 +28,10 @@ new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
         return redirect()->route('users.edit', ['id' => $userId]);
     }
 
-    public function deleteUser($userId)
+    #[On("deleteUser")]
+    public function deleteUser($id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
         $user->delete();
         session()->flash('success', 'User deleted successfully.');
     }
@@ -44,16 +46,14 @@ new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         @foreach ($users as $user)
             <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title m-0">{{ $user->name }} <small>({{ $user->roles->pluck('name')->join(', ') }})</small></h5>
-                        <p class="card-text small">{{ $user->email }}</p>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end gap-2">
-                        <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary" wire:navigate>Edit</a>
-                        <button class="btn btn-sm btn-danger" wire:click="deleteUser({{ $user->id }})" wire:confirm="Are you sure you want to delete this user?">Delete</button>
-                    </div>
-                </div>
+                @livewire('settings.card', [
+                    'id' => $user->id,
+                    'title' => $user->name,
+                    'subtitle' => $user->roles->pluck('name')->join(', '),
+                    'details' => $user->email,
+                    'editUrl' => route('users.edit', ['id' => $user->id]),
+                    'deleteAction' => "deleteUser",
+                ], key($user->id))
             </div>
         @endforeach
     </div>
