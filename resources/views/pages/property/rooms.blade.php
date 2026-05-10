@@ -40,12 +40,12 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
 ?>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{{ route('rooms.add') }}" class="btn btn-primary" wire:navigate>Add Room</a>
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+        <a href="{{ route('rooms.add') }}" class="btn btn-sm btn-primary" wire:navigate>Add Room</a>
         <div class="d-flex align-items-center gap-2">
-            <input type="text" class="form-control" placeholder="Search rooms..." wire:model.live="search">
+            <input type="text" class="form-control form-control-sm" placeholder="Search rooms..." wire:model.live="search">
             @if (auth()->user()->isSuperAdmin())
-            <select class="form-select" wire:model.live="branch_id">
+            <select class="form-select form-select-sm" wire:model.live="branch_id">
                 <option value="">All Branches</option>
                 @foreach ($branches as $branch)
                     <option value="{{ $branch->id }}">{{ $branch->name }}</option>

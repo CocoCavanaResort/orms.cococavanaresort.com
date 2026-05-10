@@ -27,7 +27,7 @@ new #[Layout('layouts::panel', ['title' => 'Branches'])] class extends Component
 
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{{ route('branches.add') }}" class="btn btn-primary" wire:navigate>Add Branch</a>
+        <a href="{{ route('branches.add') }}" class="btn btn-sm btn-primary" wire:navigate>Add Branch</a>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         @foreach ($branches as $branch)

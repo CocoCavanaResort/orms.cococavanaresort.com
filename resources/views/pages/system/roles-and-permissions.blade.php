@@ -6,7 +6,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Livewire\Attributes\On;
 
-new #[Layout('layouts::panel', ['title' => 'Roles and Permissions'])] class extends Component
+new #[Layout('layouts::panel', ['title' => 'Roles'])] class extends Component
 {
     public function with(): array
     {
@@ -28,7 +28,7 @@ new #[Layout('layouts::panel', ['title' => 'Roles and Permissions'])] class exte
 
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="{{ route('roles.add') }}" class="btn btn-primary" wire:navigate>Add Role</a>
+        <a href="{{ route('roles.add') }}" class="btn btn-sm btn-primary" wire:navigate>Add Role</a>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         @foreach ($roles as $role)

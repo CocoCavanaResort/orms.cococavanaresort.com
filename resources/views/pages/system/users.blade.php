@@ -40,8 +40,8 @@ new #[Layout('layouts::panel', ['title' => 'Users'])] class extends Component
 
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{{ route('users.add') }}" class="btn btn-primary" wire:navigate>Add User</a>
-        <input type="search" class="form-control w-25" placeholder="Search users..." wire:model.live="search" />
+        <a href="{{ route('users.add') }}" class="btn btn-sm btn-primary" wire:navigate>Add User</a>
+        <input type="search" class="form-control form-control-sm w-25" placeholder="Search users..." wire:model.live="search" />
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         @foreach ($users as $user)
