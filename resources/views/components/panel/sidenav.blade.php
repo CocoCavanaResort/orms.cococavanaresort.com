@@ -28,28 +28,39 @@ new class extends Component
                 Dashboard
             </a>
     
-            @can('manage-booking')    
-            <a class="nav-link @if(!request()->routeIs('rooms')) collapsed @endif" data-bs-toggle="collapse" href="#bookingMenu" role="button" aria-expanded="false" aria-controls="bookingMenu">
+            @can('manage-booking')
+            @php
+                $bookingActive = request()->routeIs('rooms') || request()->routeIs('reservations') || request()->routeIs('customers') || request()->routeIs('discounts');
+            @endphp
+            <a class="nav-link @if(!$bookingActive) collapsed @endif" data-bs-toggle="collapse" href="#bookingMenu" role="button" aria-expanded="false" aria-controls="bookingMenu">
                 <i class="fa-solid fa-book"></i>
                 Booking
             </a>
-            <div class="collapse @if(request()->routeIs('rooms')) show @endif ps-3" id="bookingMenu">
-                <a class="nav-link" href="#">
+            <div class="collapse @if($bookingActive) show @endif ps-3" id="bookingMenu">
+                @can('manage-reservations')
+                <a class="nav-link" href="{{ route('reservations') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-calendar-check"></i>
                     Reservations
                 </a>
+                @endcan
+                @can('manage-rooms')
                 <a class="nav-link" href="{{ route('rooms') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-bed"></i>
                     Rooms
                 </a>
-                <a class="nav-link" href="#">
+                @endcan
+                @can('manage-customers')
+                <a class="nav-link" href="{{ route('customers') }}" wire:navigate wire:current="active">
                     <i class="fa-solid fa-users"></i>
                     Customers
                 </a>
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    Invoices
+                @endcan
+                @can('manage-discounts')
+                <a class="nav-link" href="{{ route('discounts') }}" wire:navigate wire:current="active">
+                    <i class="fa-solid fa-tags"></i>
+                    Discounts & Promotions
                 </a>
+                @endcan
             </div>
             @endcan
     

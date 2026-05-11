@@ -2,7 +2,7 @@
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-use App\Models\Property\Room;
+use App\Models\Booking\Room;
 use App\Models\Property\Branch;
 use Livewire\Attributes\On;
 
@@ -39,9 +39,9 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
 };
 ?>
 
-<div class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
-        <a href="{{ route('rooms.add') }}" class="btn btn-sm btn-primary" wire:navigate>Add Room</a>
+<div class="d-grid h-100 w-100 gap-3" style="grid-template-rows: auto 1fr auto;">
+    <div class="d-flex justify-content-between align-items-center mb-4 gap-2 px-2">
+        <h4 class="mb-0">Rooms</h4>
         <div class="d-flex align-items-center gap-2">
             <input type="text" class="form-control form-control-sm" placeholder="Search rooms..." wire:model.live="search">
             @if (auth()->user()->isSuperAdmin())
@@ -54,18 +54,21 @@ new #[Layout('layouts::panel', ['title' => 'Rooms'])] class extends Component
             @endif
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-        @foreach ($rooms as $room)
-            <div class="col">
-                @livewire('settings.card', [
-                    'id' => $room->id,
-                    'title' => $room->name,
-                    'subtitle' => $room->capacity . ' pax',
-                    'details' => number_format($room->price, 2) . ' PHP/night',
-                    'editUrl' => route('rooms.edit', ['id' => $room->id]),
-                    'deleteAction' => "deleteRoom",
-                ], key($room->id))
-            </div>
-        @endforeach
+    <div class="d-flex flex-column gap-3" style="overflow-y: auto;">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            @foreach ($rooms as $room)
+                <div class="col">
+                    @livewire('settings.card', [
+                        'id' => $room->id,
+                        'title' => $room->name,
+                        'subtitle' => $room->capacity . ' pax',
+                        'details' => number_format($room->price, 2) . ' PHP/night',
+                        'editUrl' => route('rooms.edit', ['id' => $room->id]),
+                        'deleteAction' => "deleteRoom",
+                    ], key($room->id))
+                </div>
+            @endforeach
+        </div>
     </div>
+    <a href="{{ route('rooms.add') }}" class="btn btn-primary" wire:navigate>Add Room</a>
 </div>

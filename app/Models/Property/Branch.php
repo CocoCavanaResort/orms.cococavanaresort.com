@@ -4,6 +4,7 @@ namespace App\Models\Property;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Booking\Room;
 
 class Branch extends Model
 {

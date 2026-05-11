@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\Property;
+namespace App\Models\Booking;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Property\Branch;
 
 class Room extends Model
 {

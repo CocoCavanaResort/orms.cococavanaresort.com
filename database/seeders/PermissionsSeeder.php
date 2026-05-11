@@ -15,12 +15,19 @@ class PermissionsSeeder extends Seeder
     {
         $permissions = [
             ["name"=> "manage-booking", "guard_name" => "web"],
+                ["name"=> "manage-rooms", "guard_name" => "web"],
+                ["name"=> "manage-customers", "guard_name" => "web"],
+                ["name"=> "manage-reservations", "guard_name" => "web"],
+                ["name"=> "manage-discounts", "guard_name" => "web"],
+                ["name"=> "manage-payments", "guard_name" => "web"],
+
             ["name"=> "access-system-settings", "guard_name" => "web"],
+                ["name"=> "manage-users", "guard_name" => "web"],
+                ["name"=> "manage-roles", "guard_name" => "web"],
+                ["name"=> "manage-permissions", "guard_name" => "web"],
+            
             ["name"=> "manage-branches", "guard_name" => "web"],
-            ["name"=> "manage-rooms", "guard_name" => "web"],
-            ["name"=> "manage-users", "guard_name" => "web"],
-            ["name"=> "manage-roles", "guard_name" => "web"],
-            ["name"=> "manage-permissions", "guard_name" => "web"],
+
         ];
 
         Permission::insertOrIgnore($permissions);

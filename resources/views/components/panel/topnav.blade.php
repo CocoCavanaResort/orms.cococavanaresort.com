@@ -4,12 +4,7 @@ use Livewire\Component;
 
 new class extends Component
 {
-    public string $title = '';
-
-    public function mount($title)
-    {
-        $this->title = $title;
-    }
+    //
 };
 ?>
 
@@ -18,7 +13,7 @@ new class extends Component
         <button class="btn btn-ghost sidenav-toggle">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <h6 class="navbar-brand mb-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $title }}</h6>
+        <h5 class="mb-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ auth()->user()->branch->name ?? config('app.name') }}</h5>
         <div class="navbar-nav">
             <div class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
