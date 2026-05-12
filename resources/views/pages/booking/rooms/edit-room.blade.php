@@ -2,7 +2,7 @@
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-use App\Models\Property\Room;
+use App\Models\Booking\Room;
 
 new #[Layout('layouts::panel', ['title' => 'Edit Room'])] class extends Component
 {

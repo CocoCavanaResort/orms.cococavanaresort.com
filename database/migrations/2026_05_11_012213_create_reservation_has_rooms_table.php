@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservation_has_rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reservation_id');
-            $table->unsignedBigInteger('room_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations');
-            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreignId('reservation_id')->constrained('reservations');
+            $table->foreignId('room_id')->constrained('rooms');
             $table->timestamps();
         });
     }

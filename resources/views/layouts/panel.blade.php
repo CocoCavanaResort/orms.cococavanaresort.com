@@ -30,6 +30,24 @@ new #[Layout('layouts.app')] class extends Component
                     </div>
                 </div>
             @endif
+            @if (session()->has('delete'))
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ session('delete') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ session('error') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </main>
 @endsection

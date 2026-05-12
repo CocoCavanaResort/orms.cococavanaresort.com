@@ -10,7 +10,6 @@ class Discount extends Model
         'code',
         'description',
         'amount',
-        'type', // percentage or fixed
-        'status',
+        'is_percentage',
     ];
 }

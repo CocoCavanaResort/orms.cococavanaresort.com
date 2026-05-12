@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreignId('customer_id')->constrained('customers');
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->enum('stay_type', ['overnight', 'day_tour']);
             $table->integer('number_of_adults')->default(1);
+            $table->integer('number_of_kids')->default(0);
             $table->integer('number_of_children')->default(0);
-            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
+            $table->string('status')->default('pending'); // pending, confirmed, cancelled, completed
             $table->timestamps();
         });
     }

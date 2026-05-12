@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('code')->unique('code');
             $table->string('description')->nullable();
             $table->decimal('amount', 10, 2);
-            $table->enum('type', ['percentage', 'fixed']); // percentage or fixed
-            $table->boolean('status')->default(true);
+            $table->boolean('is_percentage')->default(false);
             $table->timestamps();
         });
     }

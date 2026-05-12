@@ -61,6 +61,12 @@ new class extends Component
                     Discounts & Promotions
                 </a>
                 @endcan
+                @can('manage-payments')
+                <a class="nav-link" href="{{ route('payments') }}" wire:navigate wire:current="active">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Payments
+                </a>
+                @endcan
             </div>
             @endcan
     
